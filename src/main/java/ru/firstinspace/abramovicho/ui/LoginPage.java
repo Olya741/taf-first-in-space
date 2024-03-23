@@ -30,4 +30,8 @@ public class LoginPage {
     public String getErrorText() {
         return driver.findElement(errorMessage).getText();
     }
+
+    public boolean isConfirmButtonEnabled(){
+        return driver.findElement(submitButton).isEnabled();
+    }
 }
