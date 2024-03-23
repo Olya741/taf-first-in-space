@@ -13,12 +13,11 @@ import java.util.stream.Stream;
 public class LoginPageTest extends BaseTest {
     @Test
     @DisplayName("Login with wrong email and password")
-    public void test() {
+    public void testLoginWithWrongCredentials() {
         HomePage homePage = new HomePage();
         homePage.closeSubscriptionDialog();
         LoginPage loginPage = homePage.openLoginPage();
-        loginPage.inputEmail(Util.getRandomEmail());
-        loginPage.inputPassword("A-12345");
+        loginPage.inputUserCredentials(Util.getRandomEmail(), "A-12345");
         loginPage.clickSubmitButton();
         Assertions.assertEquals("Неверные имя пользователя или пароль", loginPage.getErrorText());
     }
@@ -26,14 +25,12 @@ public class LoginPageTest extends BaseTest {
     @ParameterizedTest
     @MethodSource("provideEmptyField")
     @DisplayName("Login with empty email or password")
-    public void test(String email, String password) {
+    public void testLoginWithEmptyObligatoryField(String email, String password) {
         HomePage homePage = new HomePage();
         homePage.closeSubscriptionDialog();
         LoginPage loginPage = homePage.openLoginPage();
-        loginPage.inputEmail(email);
-        loginPage.inputPassword(password);
-        Assertions.assertEquals(false,loginPage.isConfirmButtonEnabled());
-
+        loginPage.inputUserCredentials(email, password);
+        Assertions.assertEquals(false, loginPage.isConfirmButtonEnabled());
     }
 
     private static Stream<Arguments> provideEmptyField() {

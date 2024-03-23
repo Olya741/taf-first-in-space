@@ -15,17 +15,24 @@ public class LoginPage {
     private By submitButton = By.xpath("//form[@class='auth-form__form']//button[@type='submit']");
     private By errorMessage = By.xpath("//p[@class='auth-form__error']");
 
-    public void inputEmail(String email) {
+    private void inputEmail(String email) {
         driver.findElement(emailField).sendKeys(email);
     }
 
-    public void inputPassword(String password) {
+    private void inputPassword(String password) {
         driver.findElement(passwordField).sendKeys(password);
+    }
+
+    public void inputUserCredentials(String email, String password){
+        inputEmail(email);
+        inputPassword(password);
     }
 
     public void clickSubmitButton() {
         driver.findElement(submitButton).click();
     }
+
+
 
     public String getErrorText() {
         return driver.findElement(errorMessage).getText();
