@@ -11,13 +11,15 @@ import ru.firstinspace.abramovicho.Util;
 import java.util.stream.Stream;
 
 public class LoginPageTest extends BaseTest {
+    static String password = "Aa_1234";
+
     @Test
     @DisplayName("Login with wrong email and password")
     public void testLoginWithWrongCredentials() {
         HomePage homePage = new HomePage();
         homePage.closeSubscriptionDialog();
         LoginPage loginPage = homePage.openLoginPage();
-        loginPage.inputUserCredentials(Util.getRandomEmail(), "A-12345");
+        loginPage.inputUserCredentials(Util.getRandomEmail(), password);
         loginPage.clickSubmitButton();
         Assertions.assertEquals("Неверные имя пользователя или пароль", loginPage.getErrorText());
     }
@@ -36,7 +38,7 @@ public class LoginPageTest extends BaseTest {
     private static Stream<Arguments> provideEmptyField() {
         return Stream.of(
                 Arguments.of(Util.getRandomEmail(), ""),
-                Arguments.of("", "Qq1234")
+                Arguments.of("", password)
         );
     }
 }

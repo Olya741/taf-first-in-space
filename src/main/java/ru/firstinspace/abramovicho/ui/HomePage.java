@@ -23,6 +23,7 @@ public class HomePage {
     private By cartButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[2]");
     private By cartCounter = By.xpath("//div[contains(@class,'mobile-none')]//span[@class='header__option-count']");
     private By profileButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[3]");
+    private By menuItem = By.cssSelector(".header__wrapper.mobile-none .nav__item");
     private By catalogItem = By.cssSelector(".catalog__card");
 
     public LoginPage openLoginPage() {
@@ -40,7 +41,6 @@ public class HomePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
         wait.until(ExpectedConditions.visibilityOfElementLocated(subscriptionDialog));
         driver.findElement(closeSubscription).click();
-
     }
 
 }
