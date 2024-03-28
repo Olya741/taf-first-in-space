@@ -84,4 +84,29 @@ public class LoginServiceTest {
                 .statusCode(415)
                 .body("detail", equalTo("Неподдерживаемый тип данных \"text/plain; charset=ISO-8859-1\" в запросе."));
     }
+
+    @Test
+    @DisplayName("POST 400: Test login with wrong email format")
+    public void testLogin7() {
+        given()
+                .spec(BaseSpecification.requestSpec)
+                .body(setBodyForLogin(Util.getRandomNumber(100), RandomStringUtils.randomAlphanumeric(10)))
+                .log().all()
+                .post(LoginService.endpoint)
+                .then()
+                .statusCode(400)
+                .body("email[0]", equalTo("Введите правильный адрес электронной почты."));
+    }
+
+    @Test
+    @DisplayName("POST 400: Test login with wrong password format")
+    public void testLogin8() {
+        given()
+                .spec(BaseSpecification.requestSpec)
+                .body(setBodyForLogin(Util.getRandomEmail(), true))
+                .post(LoginService.endpoint)
+                .then()
+                .statusCode(400)
+                .body("password[0]", equalTo("Not a valid string."));
+    }
 }

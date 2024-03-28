@@ -9,4 +9,18 @@ public class LoginService extends BaseSpecification {
                 "\"password\":\"%s\"\n" +
                 "}", email, password);
     }
+
+    public static String setBodyForLogin(String email, boolean password) {
+        return String.format("{\n" +
+                "\"email\":\"%s\",\n" +
+                "\"password\":%b\n" +
+                "}", email, password);
+    }
+
+    public static String setBodyForLogin(int email, String password) {
+        return String.format("{\n" +
+                "\"email\":%d,\n" +
+                "\"password\":\"%s\"\n" +
+                "}", email, password);
+    }
 }
