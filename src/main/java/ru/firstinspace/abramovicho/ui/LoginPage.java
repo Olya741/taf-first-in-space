@@ -10,10 +10,10 @@ public class LoginPage {
         this.driver = Driver.getDriver();
     }
 
-    private By emailField = By.xpath("//form[@class='auth-form__form']//input[@type='email']");
-    private By passwordField = By.xpath("//form[@class='auth-form__form']//input[@type='password']");
-    private By submitButton = By.xpath("//form[@class='auth-form__form']//button[@type='submit']");
-    private By errorMessage = By.xpath("//p[@class='auth-form__error']");
+    final private By emailField = By.xpath("//form[@class='auth-form__form']//input[@type='email']");
+    final private By passwordField = By.xpath("//form[@class='auth-form__form']//input[@type='password']");
+    final private By submitButton = By.xpath("//form[@class='auth-form__form']//button[@type='submit']");
+    final private By errorMessage = By.xpath("//p[@class='auth-form__error']");
 
     private void inputEmail(String email) {
         driver.findElement(emailField).sendKeys(email);
@@ -23,7 +23,7 @@ public class LoginPage {
         driver.findElement(passwordField).sendKeys(password);
     }
 
-    public void inputUserCredentials(String email, String password){
+    public void inputUserCredentials(String email, String password) {
         inputEmail(email);
         inputPassword(password);
     }
@@ -32,13 +32,11 @@ public class LoginPage {
         driver.findElement(submitButton).click();
     }
 
-
-
     public String getErrorText() {
         return driver.findElement(errorMessage).getText();
     }
 
-    public boolean isConfirmButtonEnabled(){
+    public boolean isConfirmButtonEnabled() {
         return driver.findElement(submitButton).isEnabled();
     }
 }

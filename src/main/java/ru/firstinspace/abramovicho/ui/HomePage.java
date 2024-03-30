@@ -6,7 +6,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class HomePage {
     private WebDriver driver;
@@ -15,15 +14,15 @@ public class HomePage {
         this.driver = Driver.getDriver();
     }
 
-    private By subscriptionDialog = By.xpath("//div[@class='subscription']");
-    private By closeSubscription = By.cssSelector("button.subscription__close");
-    private By searchField = By.cssSelector("button.header__option_search");
-    private By favoritesButton = By.cssSelector(".header__wrapper.mobile-none [href='/favorites/']");
-    private By cartButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[2]");
-    private By cartCounter = By.xpath("//div[contains(@class,'mobile-none')]//span[@class='header__option-count']");
-    private By profileButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[3]");
-    private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
-    private By catalogItem = By.cssSelector(".catalog__card");
+    final private By subscriptionDialog = By.xpath("//div[@class='subscription']");
+    final private By closeSubscription = By.cssSelector("button.subscription__close");
+    final private By searchField = By.cssSelector("button.header__option_search");
+    final private By searchInput = By.xpath("//input[@class='searchForm__input']");
+    final private By favoritesButton = By.cssSelector(".header__wrapper.mobile-none [href='/favorites/']");
+    final private By cartButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[2]");
+    final private By cartCounter = By.xpath("//div[contains(@class,'mobile-none')]//span[@class='header__option-count']");
+    final private By profileButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[3]");
+    final private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
     public LoginPage openLoginPage() {
         driver.findElement(profileButton).click();
@@ -31,7 +30,8 @@ public class HomePage {
     }
 
     public void inputTextInSearchField(String text) {
-        WebElement search = driver.findElement(searchField);
+        driver.findElement(searchField).click();
+        WebElement search = driver.findElement(searchInput);
         search.sendKeys(text);
         search.sendKeys(Keys.ENTER);
     }
@@ -51,7 +51,7 @@ public class HomePage {
         return itemsList.stream()
                 .filter(e -> e.getText().equals(menu.getName()))
                 .findAny()
-                .orElseThrow(() -> new NoSuchElementException("Field does not found: " + menu.getName()));
+                .orElseThrow(() -> new NoSuchElementException(menu.getName() + " field not found"));
     }
 
     public void openSection(Menu menuItems) {
