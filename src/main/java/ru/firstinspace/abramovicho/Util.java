@@ -32,6 +32,10 @@ public class Util {
     }
 
     public static String getRandomEmail() {
-        return getRandomName()+ "@" + getRandomSite() + getRandomDomain();
+        return getRandomName() + "@" + getRandomSite() + getRandomDomain();
+    }
+
+    public static boolean findMatchInText(String wholeText, String fragment) {
+        return wholeText.toLowerCase().contains(fragment.toLowerCase());
     }
 }
