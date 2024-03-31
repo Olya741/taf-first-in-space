@@ -15,6 +15,8 @@ public class ResultsPage {
 
     final private By catalogItem = By.cssSelector(".catalog__card");
     final private By emptySearchResultMessage = By.xpath("//p[@class='catalog__info']");
+    final private By addToCartButton = By.xpath("//div[@class='card-sizes card__sizes']/button");
+
 
     public String getEmptySearchResultMessage() {
         return driver.findElement(emptySearchResultMessage).getText();
