@@ -1,5 +1,6 @@
 package ru.firstinspace.abramovicho.ui;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -11,15 +12,14 @@ import ru.firstinspace.abramovicho.Util;
 import java.util.stream.Stream;
 
 public class LoginPageTest extends BaseTest {
-    static String password = "Aa_1234";
-
     @Test
     @DisplayName("Login with wrong email and password")
     public void testLoginWithWrongCredentials() {
         HomePage homePage = new HomePage();
+        NavigationMenu menu = new NavigationMenu();
         homePage.closeSubscriptionDialog();
-        LoginPage loginPage = homePage.openLoginPage();
-        loginPage.inputUserCredentials(Util.getRandomEmail(), password);
+        LoginPage loginPage = menu.openLoginPage();
+        loginPage.inputUserCredentials(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(8));
         loginPage.clickSubmitButton();
         Assertions.assertEquals("Неверные имя пользователя или пароль", loginPage.getErrorText());
     }
@@ -29,8 +29,9 @@ public class LoginPageTest extends BaseTest {
     @DisplayName("Login with empty email or password")
     public void testLoginWithEmptyObligatoryField(String email, String password) {
         HomePage homePage = new HomePage();
+        NavigationMenu menu = new NavigationMenu();
         homePage.closeSubscriptionDialog();
-        LoginPage loginPage = homePage.openLoginPage();
+        LoginPage loginPage = menu.openLoginPage();
         loginPage.inputUserCredentials(email, password);
         Assertions.assertEquals(false, loginPage.isConfirmButtonEnabled());
     }
@@ -38,7 +39,7 @@ public class LoginPageTest extends BaseTest {
     private static Stream<Arguments> provideEmptyField() {
         return Stream.of(
                 Arguments.of(Util.getRandomEmail(), ""),
-                Arguments.of("", password)
+                Arguments.of("", RandomStringUtils.randomAlphanumeric(8))
         );
     }
 }
