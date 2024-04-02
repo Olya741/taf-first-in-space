@@ -1,6 +1,7 @@
 package ru.firstinspace.abramovicho.ui;
 
 import org.openqa.selenium.*;
+import ru.firstinspace.abramovicho.enums.Menu;
 
 import java.util.List;
 

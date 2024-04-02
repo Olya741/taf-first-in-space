@@ -18,7 +18,7 @@ public class ResultPageTest extends BaseTest {
         String wrongText = RandomStringUtils.randomAlphabetic(10);
         menu.inputTextInSearchField(wrongText);
         ResultsPage resultsPage = new ResultsPage();
-        Assertions.assertTrue(Util.findMatchInText(resultsPage.getEmptySearchResultMessage(), wrongText));
+        Assertions.assertTrue(Util.doesTextContainsFragment(resultsPage.getEmptySearchResultMessage(), wrongText));
     }
 
     @Test
@@ -30,6 +30,6 @@ public class ResultPageTest extends BaseTest {
         menu.inputTextInSearchField(textForSearch);
         ResultsPage resultsPage = new ResultsPage();
         ModelInfoPage modelInfoPage = resultsPage.openModelDescription();
-        Assertions.assertTrue(Util.findMatchInText(modelInfoPage.getDescription(), textForSearch));
+        Assertions.assertTrue(Util.doesTextContainsFragment(modelInfoPage.getDescription(), textForSearch));
     }
 }
