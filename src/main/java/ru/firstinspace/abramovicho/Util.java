@@ -35,7 +35,7 @@ public class Util {
         return getRandomName() + "@" + getRandomSite() + getRandomDomain();
     }
 
-    public static boolean findMatchInText(String wholeText, String fragment) {
+    public static boolean doesTextContainsFragment(String wholeText, String fragment) {
         return wholeText.toLowerCase().contains(fragment.toLowerCase());
     }
 }

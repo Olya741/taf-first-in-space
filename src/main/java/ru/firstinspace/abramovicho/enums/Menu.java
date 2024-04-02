@@ -1,4 +1,4 @@
-package ru.firstinspace.abramovicho.ui;
+package ru.firstinspace.abramovicho.enums;
 
 public enum Menu {
     CATALOG("КАТАЛОГ"),
