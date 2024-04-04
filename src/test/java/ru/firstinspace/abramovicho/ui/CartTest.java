@@ -17,13 +17,12 @@ public class CartTest extends BaseTest {
         ResultsPage resultsPage = new ResultsPage();
         String modelName = resultsPage.getModelName();
         String modelSize = resultsPage.getAvailableSize();
-        System.out.println(resultsPage.getAvailableSize());
         resultsPage.addProductToCart();
         CartModal cartModal = new CartModal();
 
         assertAll(
-                () -> assertEquals(modelName, cartModal.getProductName()+"*"),
-                () -> assertEquals(modelSize, cartModal.getProductSize()+"*")
+                () -> assertEquals(modelName, cartModal.getProductName()),
+                () -> assertEquals(modelSize, cartModal.getProductSize())
         );
     }
 }

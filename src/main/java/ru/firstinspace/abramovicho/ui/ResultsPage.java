@@ -18,9 +18,9 @@ public class ResultsPage {
     final private String catalogItem = "//div[@class='catalog__card']";
     final private By emptySearchResultMessage = By.xpath("//p[@class='catalog__info']");
     final private String sizeItem = "//ul[@class='card-sizes__list']/li";
-    final private By modelName = By.xpath("//div[@class='card__name']");
-    final private By addToCartButton = By.xpath("//div[@class='card-sizes card__sizes']/button");
-    final private int itemNumber = 3;
+    final private String modelName = "//div[@class='card__name']";
+    final private String addToCartButton = "//div[@class='card-sizes card__sizes']/button";
+    private int itemNumber = 3;
 
     public String getEmptySearchResultMessage() {
         return driver.findElement(emptySearchResultMessage).getText();
@@ -34,22 +34,22 @@ public class ResultsPage {
         return getListOfModels().get(itemNumber);
     }
 
+    private String getExactPath(String basePath) {
+        int i = itemNumber + 1;
+        return catalogItem + "[" + i + "]" + basePath;
+    }
+
     public ModelInfoPage openModelDescription() {
         getSingleModel().click();
         return new ModelInfoPage();
     }
 
     public String getModelName() {
-        return getSingleModel().findElement(modelName).getText();
-    }
-
-    private String getExactPathToSizeItem() {
-        int i = itemNumber + 1;
-        return catalogItem + "[" + i + "]" + sizeItem;
+        return getSingleModel().findElement(By.xpath(getExactPath(modelName))).getText();
     }
 
     private List<WebElement> getListOfSuggestedSizes() {
-        return driver.findElements(By.xpath(getExactPathToSizeItem()));
+        return driver.findElements(By.xpath(getExactPath(sizeItem)));
     }
 
     private WebElement findFirstAvailableSize() {
@@ -70,7 +70,7 @@ public class ResultsPage {
     }
 
     private void clickAddToCartButton() {
-        getSingleModel().findElement(addToCartButton).click();
+        driver.findElement(By.xpath(getExactPath(addToCartButton))).click();
     }
 
     public void addProductToCart() {

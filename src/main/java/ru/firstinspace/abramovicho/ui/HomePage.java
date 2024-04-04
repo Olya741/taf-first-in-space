@@ -14,8 +14,8 @@ public class HomePage {
         this.driver = Driver.getDriver();
     }
 
-    final private By subscriptionDialog = By.xpath("//div[@class='subscription']");
-    final private By closeSubscription = By.cssSelector("button.subscription__close");
+    private By subscriptionDialog = By.xpath("//div[@class='subscription']");
+    private By closeSubscription = By.cssSelector("button.subscription__close");
 
     public void closeSubscriptionDialog() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));

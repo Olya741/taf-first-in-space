@@ -13,9 +13,9 @@ public class CartModal {
         this.driver = Driver.getDriver();
     }
 
-    private final By productItem = By.xpath("//ul[@class='modalCart__list']/li");
-    private final By productName = By.cssSelector(".modalCart__product-name");
-    private final By productSize = By.cssSelector(".modalCart__product-option_size .modalCart__product-size");
+    private By productItem = By.xpath("//ul[@class='modalCart__list']/li");
+    private By productName = By.cssSelector(".modalCart__product-name");
+    private By productSize = By.cssSelector(".modalCart__product-option_size .modalCart__product-size");
 
     private List<WebElement> getListOfAddedProducts() {
         return driver.findElements(productItem);
