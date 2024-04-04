@@ -3,15 +3,27 @@ package ru.firstinspace.abramovicho.ui;
 import org.junit.jupiter.api.Test;
 import ru.firstinspace.abramovicho.enums.Menu;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 public class CartTest extends BaseTest {
 
     @Test
-    public void test() {
+    public void testAddProductToCart() {
         HomePage homePage = new HomePage();
         homePage.closeSubscriptionDialog();
         NavigationMenu menu = new NavigationMenu();
         menu.openSection(Menu.SALE);
         ResultsPage resultsPage = new ResultsPage();
-        System.out.println(resultsPage.getModelName());
+        String modelName = resultsPage.getModelName();
+        String modelSize = resultsPage.getAvailableSize();
+        System.out.println(resultsPage.getAvailableSize());
+        resultsPage.addProductToCart();
+        CartModal cartModal = new CartModal();
+
+        assertAll(
+                () -> assertEquals(modelName, cartModal.getProductName()+"*"),
+                () -> assertEquals(modelSize, cartModal.getProductSize()+"*")
+        );
     }
 }

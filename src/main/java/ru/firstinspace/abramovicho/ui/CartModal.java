@@ -15,10 +15,9 @@ public class CartModal {
 
     private final By productItem = By.xpath("//ul[@class='modalCart__list']/li");
     private final By productName = By.cssSelector(".modalCart__product-name");
-    private final By deleteProductButton = By.cssSelector(".modalCart__product-delete");
-    private final By productCounter = By.cssSelector(".modalCart__product-option_quantity .counter");
+    private final By productSize = By.cssSelector(".modalCart__product-option_size .modalCart__product-size");
 
-    public List<WebElement> getListOfAddedProducts() {
+    private List<WebElement> getListOfAddedProducts() {
         return driver.findElements(productItem);
     }
 
@@ -26,8 +25,7 @@ public class CartModal {
         return getListOfAddedProducts().get(0).findElement(productName).getText();
     }
 
-    public int getNumberOfSingleProduct() {
-        return Integer.valueOf(getListOfAddedProducts().get(0).findElement(productCounter).getText());
+    public String getProductSize() {
+        return getListOfAddedProducts().get(0).findElement(productSize).getText();
     }
-
 }
