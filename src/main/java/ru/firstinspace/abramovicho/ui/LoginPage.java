@@ -10,10 +10,10 @@ public class LoginPage {
         this.driver = Driver.getDriver();
     }
 
-    final private By emailField = By.xpath("//form[@class='auth-form__form']//input[@type='email']");
-    final private By passwordField = By.xpath("//form[@class='auth-form__form']//input[@type='password']");
-    final private By submitButton = By.xpath("//form[@class='auth-form__form']//button[@type='submit']");
-    final private By errorMessage = By.xpath("//p[@class='auth-form__error']");
+    private By emailField = By.xpath("//form[@class='auth-form__form']//input[@type='email']");
+    private By passwordField = By.xpath("//form[@class='auth-form__form']//input[@type='password']");
+    private By submitButton = By.xpath("//form[@class='auth-form__form']//button[@type='submit']");
+    private By errorMessage = By.xpath("//p[@class='auth-form__error']");
 
     private void inputEmail(String email) {
         driver.findElement(emailField).sendKeys(email);

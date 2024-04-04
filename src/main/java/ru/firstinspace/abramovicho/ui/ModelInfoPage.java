@@ -10,7 +10,7 @@ public class ModelInfoPage {
         this.driver = Driver.getDriver();
     }
 
-    final private By modelDescription = By.xpath("//div[@class='info-block__description']//p");
+    private By modelDescription = By.xpath("//div[@class='info-block__description']//p");
 
     public String getDescription() {
         return driver.findElement(modelDescription).getText();
