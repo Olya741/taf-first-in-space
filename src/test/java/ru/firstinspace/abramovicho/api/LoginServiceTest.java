@@ -18,7 +18,7 @@ public class LoginServiceTest {
         given()
                 .spec(BaseSpecification.requestSpec)
                 .body(setBodyForLogin(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(10)))
-                .post(LoginService.endpoint)
+                .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
                 .body("user[0]", equalTo("Неверные имя пользователя или пароль"));
@@ -30,7 +30,7 @@ public class LoginServiceTest {
         given()
                 .spec(BaseSpecification.requestSpec)
                 .body(setBodyForLogin("", RandomStringUtils.randomAlphanumeric(10)))
-                .post(LoginService.endpoint)
+                .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
                 .body("email[0]", equalTo("Это поле не может быть пустым."));
@@ -42,7 +42,7 @@ public class LoginServiceTest {
         given()
                 .spec(BaseSpecification.requestSpec)
                 .body(setBodyForLogin(Util.getRandomEmail(), ""))
-                .post(LoginService.endpoint)
+                .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
                 .body("password[0]", equalTo("Это поле не может быть пустым."));
@@ -54,7 +54,7 @@ public class LoginServiceTest {
         given()
                 .spec(BaseSpecification.requestSpec)
                 .body(setBodyForLogin(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(10)))
-                .put(LoginService.endpoint)
+                .put(EndPoints.LOGIN)
                 .then()
                 .statusCode(405)
                 .body("detail", equalTo("Метод \"PUT\" не разрешен."));
@@ -65,7 +65,7 @@ public class LoginServiceTest {
     public void testLogin5() {
         given()
                 .spec(BaseSpecification.requestSpec)
-                .post(LoginService.endpoint)
+                .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
                 .body("email[0]", equalTo("Обязательное поле."))
@@ -79,7 +79,7 @@ public class LoginServiceTest {
         given()
                 .body(setBodyForLogin(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(10)))
                 .log().all()
-                .post(BASE_URI + LoginService.endpoint)
+                .post(BASE_URI + EndPoints.LOGIN)
                 .then()
                 .statusCode(415)
                 .body("detail", equalTo("Неподдерживаемый тип данных \"text/plain; charset=ISO-8859-1\" в запросе."));
@@ -92,7 +92,7 @@ public class LoginServiceTest {
                 .spec(BaseSpecification.requestSpec)
                 .body(setBodyForLogin(Util.getRandomNumber(100), RandomStringUtils.randomAlphanumeric(10)))
                 .log().all()
-                .post(LoginService.endpoint)
+                .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
                 .body("email[0]", equalTo("Введите правильный адрес электронной почты."));
@@ -104,7 +104,7 @@ public class LoginServiceTest {
         given()
                 .spec(BaseSpecification.requestSpec)
                 .body(setBodyForLogin(Util.getRandomEmail(), true))
-                .post(LoginService.endpoint)
+                .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
                 .body("password[0]", equalTo("Not a valid string."));
