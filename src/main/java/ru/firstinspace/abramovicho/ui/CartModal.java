@@ -3,7 +3,10 @@ package ru.firstinspace.abramovicho.ui;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 
 public class CartModal {
@@ -22,6 +25,8 @@ public class CartModal {
     }
 
     public String getProductName() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(productName));
         return getListOfAddedProducts().get(0).findElement(productName).getText();
     }
 
