@@ -20,7 +20,7 @@ public class ResultsPage {
     final private String sizeItem = "//ul[@class='card-sizes__list']/li";
     final private String modelName = "//div[@class='card__name']";
     final private String addToCartButton = "//div[@class='card-sizes card__sizes']/button";
-    private int itemNumber = 3;
+    private int itemNumber = 0;
 
     public String getEmptySearchResultMessage() {
         return driver.findElement(emptySearchResultMessage).getText();
