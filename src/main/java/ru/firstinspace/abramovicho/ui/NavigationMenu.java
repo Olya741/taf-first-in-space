@@ -1,11 +1,8 @@
 package ru.firstinspace.abramovicho.ui;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import ru.firstinspace.abramovicho.enums.Menu;
 
-import java.time.Duration;
 import java.util.List;
 
 public class NavigationMenu {
@@ -24,8 +21,6 @@ public class NavigationMenu {
     private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
     public LoginPage openLoginPage() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
-        wait.until(ExpectedConditions.elementToBeClickable(profileButton));
         driver.findElement(profileButton).click();
         return new LoginPage();
     }
