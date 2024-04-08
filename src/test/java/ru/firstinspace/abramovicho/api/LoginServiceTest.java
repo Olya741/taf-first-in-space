@@ -21,7 +21,7 @@ public class LoginServiceTest {
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
-                .body("user[0]", equalTo("Неверные имя пользователя или пароль"));
+                .body("user[0]", equalTo(LoginService.wrongLoginOrPasswordError));
     }
 
     @Test
@@ -33,7 +33,7 @@ public class LoginServiceTest {
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
-                .body("email[0]", equalTo("Это поле не может быть пустым."));
+                .body("email[0]", equalTo(LoginService.emptyFieldError));
     }
 
     @Test
@@ -45,7 +45,7 @@ public class LoginServiceTest {
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
-                .body("password[0]", equalTo("Это поле не может быть пустым."));
+                .body("password[0]", equalTo(LoginService.emptyFieldError));
     }
 
     @Test
@@ -68,9 +68,9 @@ public class LoginServiceTest {
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
-                .body("email[0]", equalTo("Обязательное поле."))
+                .body("email[0]", equalTo(LoginService.requiredFieldError))
                 .and()
-                .body("password[0]", equalTo("Обязательное поле."));
+                .body("password[0]", equalTo(LoginService.requiredFieldError));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class LoginServiceTest {
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
-                .body("email[0]", equalTo("Введите правильный адрес электронной почты."));
+                .body("email[0]", equalTo(LoginService.invalidEmailFormatError));
     }
 
     @Test
@@ -107,6 +107,6 @@ public class LoginServiceTest {
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
-                .body("password[0]", equalTo("Not a valid string."));
+                .body("password[0]", equalTo(LoginService.invalidPasswordFormatError));
     }
 }

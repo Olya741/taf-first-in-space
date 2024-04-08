@@ -1,6 +1,12 @@
 package ru.firstinspace.abramovicho.api;
 
 public class LoginService {
+    public static String wrongLoginOrPasswordError = "Неверные имя пользователя или пароль";
+    public static String requiredFieldError = "Обязательное поле.";
+    public static String emptyFieldError = "Это поле не может быть пустым.";
+    public static String invalidEmailFormatError = "Введите правильный адрес электронной почты.";
+    public static String invalidPasswordFormatError = "Not a valid string.";
+
     public static String setBodyForLogin(String email, String password) {
         return String.format("{\n" +
                 "\"email\":\"%s\",\n" +
