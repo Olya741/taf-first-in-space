@@ -23,8 +23,9 @@ public class NavigationMenu {
     }
 
     public void inputTextInSearchField(String text) {
+        UIWait.waitElementIsVisible(driver, searchField);
         driver.findElement(searchField).click();
-        UIWait.waitElementIsClickable(driver, searchInput, 2);
+        UIWait.waitElementIsClickable(driver, searchInput);
         WebElement search = driver.findElement(searchInput);
         search.sendKeys(text);
         search.sendKeys(Keys.ENTER);
