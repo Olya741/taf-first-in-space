@@ -16,6 +16,7 @@ public class LoginPage {
     private By errorMessage = By.xpath("//p[@class='auth-form__error']");
 
     private void inputEmail(String email) {
+        UIWait.waitElementIsVisible(driver, emailField);
         driver.findElement(emailField).sendKeys(email);
     }
 
@@ -33,6 +34,7 @@ public class LoginPage {
     }
 
     public String getErrorText() {
+        UIWait.waitElementIsVisible(driver, errorMessage);
         return driver.findElement(errorMessage).getText();
     }
 

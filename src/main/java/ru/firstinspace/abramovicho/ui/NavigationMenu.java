@@ -18,14 +18,15 @@ public class NavigationMenu {
     private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
     public LoginPage openLoginPage() {
+        UIWait.waitElementIsClickable(driver, profileButton);
         driver.findElement(profileButton).click();
         return new LoginPage();
     }
 
     public void inputTextInSearchField(String text) {
-        System.out.println( driver.findElement(searchField).isEnabled());
+        System.out.println(driver.findElement(searchField).isEnabled());
         UIWait.waitElementIsVisible(driver, searchField);
-        System.out.println( driver.findElement(searchField).isEnabled());
+        System.out.println(driver.findElement(searchField).isEnabled());
         driver.findElement(searchField).click();
         UIWait.waitElementIsClickable(driver, searchInput);
         WebElement search = driver.findElement(searchInput);
