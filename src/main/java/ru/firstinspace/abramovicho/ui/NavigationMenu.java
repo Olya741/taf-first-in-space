@@ -14,9 +14,6 @@ public class NavigationMenu {
 
     private By searchField = By.cssSelector("button.header__option_search");
     private By searchInput = By.xpath("//input[@class='searchForm__input']");
-    private By favoritesButton = By.cssSelector(".header__wrapper.mobile-none [href='/favorites/']");
-    private By cartButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[2]");
-    private By cartCounter = By.xpath("//div[contains(@class,'mobile-none')]//span[@class='header__option-count']");
     private By profileButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[3]");
     private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
@@ -27,6 +24,7 @@ public class NavigationMenu {
 
     public void inputTextInSearchField(String text) {
         driver.findElement(searchField).click();
+        UIWait.waitElementIsClickable(driver, searchInput, 2);
         WebElement search = driver.findElement(searchInput);
         search.sendKeys(text);
         search.sendKeys(Keys.ENTER);
