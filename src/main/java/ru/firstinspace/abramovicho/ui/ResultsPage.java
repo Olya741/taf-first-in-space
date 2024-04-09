@@ -23,7 +23,7 @@ public class ResultsPage {
     private int itemNumber = 0;
 
     public String getEmptySearchResultMessage() {
-        UIWait.waitElementIsVisible(driver,emptySearchResultMessage);
+        UIWait.waitElementIsVisible(driver, emptySearchResultMessage);
         return driver.findElement(emptySearchResultMessage).getText();
     }
 

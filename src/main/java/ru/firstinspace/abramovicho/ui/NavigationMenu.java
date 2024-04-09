@@ -24,9 +24,7 @@ public class NavigationMenu {
     }
 
     public void inputTextInSearchField(String text) {
-        System.out.println(driver.findElement(searchField).isEnabled());
         UIWait.waitElementIsVisible(driver, searchField);
-        System.out.println(driver.findElement(searchField).isEnabled());
         driver.findElement(searchField).click();
         UIWait.waitElementIsClickable(driver, searchInput);
         WebElement search = driver.findElement(searchInput);
