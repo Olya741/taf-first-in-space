@@ -18,13 +18,13 @@ public class NavigationMenu {
     private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
     public LoginPage openLoginPage() {
-        UIWait.waitElementIsClickable(driver, profileButton);
+        //  UIWait.waitElementIsClickable(driver, profileButton);
         driver.findElement(profileButton).click();
         return new LoginPage();
     }
 
     private void pointCursorOnSearchField() {
-        UIWait.waitElementIsVisible(driver, searchField);
+        //    UIWait.waitElementIsVisible(driver, searchField);
         driver.findElement(searchField).click();
     }
 
