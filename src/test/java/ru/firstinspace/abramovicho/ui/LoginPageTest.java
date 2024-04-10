@@ -33,7 +33,7 @@ public class LoginPageTest extends BaseTest {
         homePage.closeSubscriptionDialog();
         LoginPage loginPage = menu.openLoginPage();
         loginPage.inputUserCredentials(email, password);
-        Assertions.assertEquals(false, loginPage.isConfirmButtonEnabled());
+        Assertions.assertFalse(loginPage.isConfirmButtonEnabled());
     }
 
     private static Stream<Arguments> provideEmptyField() {

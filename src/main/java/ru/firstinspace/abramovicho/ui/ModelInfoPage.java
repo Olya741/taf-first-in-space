@@ -13,6 +13,7 @@ public class ModelInfoPage {
     private By modelDescription = By.xpath("//div[@class='info-block__description']//p");
 
     public String getDescription() {
+        UIWait.waitElementIsVisible(driver, modelDescription);
         return driver.findElement(modelDescription).getText();
     }
 }

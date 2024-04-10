@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import ru.firstinspace.abramovicho.Util;
 
 public class ResultPageTest extends BaseTest {
+    String wrongText = RandomStringUtils.randomAlphabetic(10);
     String textForSearch = "рубашка";
 
     @Test
@@ -15,7 +16,6 @@ public class ResultPageTest extends BaseTest {
         HomePage homePage = new HomePage();
         NavigationMenu menu = new NavigationMenu();
         homePage.closeSubscriptionDialog();
-        String wrongText = RandomStringUtils.randomAlphabetic(10);
         menu.inputTextInSearchField(wrongText);
         ResultsPage resultsPage = new ResultsPage();
         Assertions.assertTrue(Util.doesTextContainsFragment(resultsPage.getEmptySearchResultMessage(), wrongText));
