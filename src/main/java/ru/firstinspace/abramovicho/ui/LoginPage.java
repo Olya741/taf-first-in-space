@@ -1,14 +1,7 @@
 package ru.firstinspace.abramovicho.ui;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.FluentWait;
-import org.openqa.selenium.support.ui.Wait;
-
-import java.time.Duration;
 
 public class LoginPage {
     private WebDriver driver;
@@ -23,14 +16,8 @@ public class LoginPage {
     private By errorMessage = By.xpath("//p[@class='auth-form__error']");
 
     private void inputEmail(String email) {
-        // UIWait.waitElementIsVisible(driver, emailField);
-
-        Wait<WebDriver> wait = new FluentWait(driver)
-                .withTimeout(Duration.ofSeconds(10))
-                .pollingEvery(Duration.ofMillis(500))
-                .ignoring(NoSuchElementException.class);
-        WebElement e = wait.until(ExpectedConditions.visibilityOfElementLocated(emailField));
-        e.sendKeys(email);
+        UIWait.waitElementIsVisible(driver, emailField);
+        driver.findElement(emailField).sendKeys(email);
     }
 
     private void inputPassword(String password) {
@@ -47,7 +34,7 @@ public class LoginPage {
     }
 
     public String getErrorText() {
-     UIWait.waitElementIsVisible(driver, errorMessage);
+        UIWait.waitElementIsVisible(driver, errorMessage);
         return driver.findElement(errorMessage).getText();
     }
 
