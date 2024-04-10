@@ -41,6 +41,7 @@ public class NavigationMenu {
     }
 
     private WebElement filterList(Menu menu) {
+        UIWait.waitListIsNotEmpty(driver, section);
         List<WebElement> itemsList = getListOfMenuItems();
         return itemsList.stream()
                 .filter(e -> e.getText().equals(menu.getName()))

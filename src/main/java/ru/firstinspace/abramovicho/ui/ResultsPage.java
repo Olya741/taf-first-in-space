@@ -15,12 +15,13 @@ public class ResultsPage {
         this.driver = Driver.getDriver();
     }
 
-    final private String catalogItem = "//div[@class='catalog__card']";
-    final private By emptySearchResultMessage = By.xpath("//p[@class='catalog__info']");
-    final private String sizeItem = "//ul[@class='card-sizes__list']/li";
-    final private String modelName = "//div[@class='card__name']";
-    final private String addToCartButton = "//div[@class='card-sizes card__sizes']/button";
-    private int itemNumber = 0;
+    private By listOfItems = By.xpath("//div[@class='catalog__card']");
+    private String catalogItem = "//div[@class='catalog__card']";
+    private By emptySearchResultMessage = By.xpath("//p[@class='catalog__info']");
+    private String sizeItem = "//ul[@class='card-sizes__list']/li";
+    private String modelName = "//div[@class='card__name']";
+    private String addToCartButton = "//div[@class='card-sizes card__sizes']/button";
+    private int itemNumberInDOM = 2;
 
     public String getEmptySearchResultMessage() {
         UIWait.waitElementIsVisible(driver, emptySearchResultMessage);
@@ -28,20 +29,25 @@ public class ResultsPage {
     }
 
     private List<WebElement> getListOfModels() {
+        UIWait.waitListIsNotEmpty(driver, listOfItems);
         return driver.findElements(By.xpath(catalogItem));
     }
 
+    private WebElement getFirstModel() {
+        UIWait.waitListIsNotEmpty(driver, listOfItems);
+        return driver.findElement(By.xpath(catalogItem));
+    }
+
     private WebElement getSingleModel() {
-        return getListOfModels().get(itemNumber);
+        return getListOfModels().get(itemNumberInDOM - 1);
     }
 
     private String getExactPath(String basePath) {
-        int i = itemNumber + 1;
-        return catalogItem + "[" + i + "]" + basePath;
+        return catalogItem + "[" + itemNumberInDOM + "]" + basePath;
     }
 
     public ModelInfoPage openModelDescription() {
-        getSingleModel().click();
+        getFirstModel().click();
         return new ModelInfoPage();
     }
 
