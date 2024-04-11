@@ -18,13 +18,11 @@ public class NavigationMenu {
     private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
     public LoginPage openLoginPage() {
-        //  UIWait.waitElementIsClickable(driver, profileButton);
         driver.findElement(profileButton).click();
         return new LoginPage();
     }
 
     private void pointCursorOnSearchField() {
-        //    UIWait.waitElementIsVisible(driver, searchField);
         driver.findElement(searchField).click();
     }
 
@@ -46,7 +44,7 @@ public class NavigationMenu {
         return itemsList.stream()
                 .filter(e -> e.getText().equals(menu.getName()))
                 .findAny()
-                .orElseThrow(() -> new NoSuchElementException(menu.getName() + " field not found"));
+                .orElseThrow(() -> new NoSuchElementException("Раздел " + menu.getName() + " не найден."));
     }
 
     public void openSection(Menu menuItems) {
