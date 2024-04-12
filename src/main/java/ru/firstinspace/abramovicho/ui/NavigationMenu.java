@@ -18,6 +18,7 @@ public class NavigationMenu {
     private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
     public LoginPage openLoginPage() {
+        UIWait.waitElementIsPresents(driver, profileButton);
         driver.findElement(profileButton).click();
         return new LoginPage();
     }
