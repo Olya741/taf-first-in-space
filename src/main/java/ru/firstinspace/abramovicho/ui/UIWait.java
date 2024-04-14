@@ -16,7 +16,7 @@ public class UIWait {
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(ElementNotInteractableException.class, NoSuchElementException.class);
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.elementToBeClickable(locator)));
+        wait.until(ExpectedConditions.elementToBeClickable(locator));
     }
 
     public static void waitElementIsVisible(WebDriver driver, By locator) {
@@ -24,7 +24,7 @@ public class UIWait {
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(ElementNotInteractableException.class, NoSuchElementException.class);
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.visibilityOfElementLocated(locator)));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
     public static void waitElementIsPresents(WebDriver driver, By locator) {
@@ -32,7 +32,7 @@ public class UIWait {
                 .withTimeout(Duration.ofSeconds(10))
                 .pollingEvery(Duration.ofSeconds(1))
                 .ignoring(ElementNotInteractableException.class, NoSuchElementException.class);
-        wait.until(ExpectedConditions.refreshed(ExpectedConditions.presenceOfElementLocated(locator)));
+        wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
     public static void waitListIsNotEmpty(WebDriver driver, By locator) {
