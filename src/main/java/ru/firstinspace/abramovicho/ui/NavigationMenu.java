@@ -15,7 +15,7 @@ public class NavigationMenu {
     private By searchField = By.cssSelector("button.header__option_search");
     private By searchInput = By.xpath("//input[@class='searchForm__input']");
     private By profileButton = By.xpath("(//div[contains(@class,'mobile-none')]//button)[3]");
-    private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']/*");
+    private By section = By.xpath("//div[contains(@class, 'mobile-none')]//li[@class='nav__item']");
 
     public LoginPage openLoginPage() {
         UIWait.waitElementIsPresents(driver, profileButton);
