@@ -1,6 +1,7 @@
 package ru.firstinspace.abramovicho;
 
-import java.util.List;
+import com.github.javafaker.Faker;
+
 import java.util.Random;
 
 public class Util {
@@ -9,30 +10,9 @@ public class Util {
         return random.nextInt(maxValue);
     }
 
-    public static String getRandomValue(List<String> list, int randomNumber) {
-        return list.get(randomNumber);
-    }
-
-    public static String getRandomDomain() {
-        List<String> domains = PrepareTestData.getListOfDomains();
-        int size = domains.size();
-        return getRandomValue(domains, getRandomNumber(size));
-    }
-
-    public static String getRandomName() {
-        List<String> names = PrepareTestData.getListOfNames();
-        int size = names.size();
-        return getRandomValue(names, getRandomNumber(size));
-    }
-
-    private static String getRandomSite() {
-        List<String> sites = PrepareTestData.getListOfSites();
-        int size = sites.size();
-        return getRandomValue(sites, getRandomNumber(size));
-    }
-
     public static String getRandomEmail() {
-        return getRandomName() + "@" + getRandomSite() + getRandomDomain();
+        Faker faker = new Faker();
+        return faker.internet().emailAddress();
     }
 
     public static boolean doesTextContainsFragment(String wholeText, String fragment) {
