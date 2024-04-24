@@ -13,9 +13,7 @@ public class ResultPageTest extends BaseTest {
     @Test
     @DisplayName("Test search with non-existent product name")
     public void testSearchWithEmptyResultList() {
-        HomePage homePage = new HomePage();
         NavigationMenu menu = new NavigationMenu();
-        homePage.closeSubscriptionDialog();
         menu.inputTextInSearchField(wrongText);
         ResultsPage resultsPage = new ResultsPage();
         Assertions.assertTrue(Util.doesTextContainsFragment(resultsPage.getEmptySearchResultMessage(), wrongText));
@@ -24,9 +22,7 @@ public class ResultPageTest extends BaseTest {
     @Test
     @DisplayName("Test that the model from the search results contains text fragment")
     public void testSearchResultWithExistingName() {
-        HomePage homePage = new HomePage();
         NavigationMenu menu = new NavigationMenu();
-        homePage.closeSubscriptionDialog();
         menu.inputTextInSearchField(textForSearch);
         ResultsPage resultsPage = new ResultsPage();
         ModelInfoPage modelInfoPage = resultsPage.openModelDescription();

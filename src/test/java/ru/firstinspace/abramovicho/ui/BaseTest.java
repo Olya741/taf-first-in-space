@@ -9,6 +9,8 @@ public class BaseTest {
     public void warmUp() {
         Driver.getDriver()
                 .get("https://www.first-in-space.ru/");
+        HomePage homePage = new HomePage();
+        homePage.closeSubscriptionDialog();
     }
 
     @AfterEach

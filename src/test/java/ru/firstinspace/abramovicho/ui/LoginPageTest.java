@@ -15,9 +15,7 @@ public class LoginPageTest extends BaseTest {
     @Test
     @DisplayName("Login with wrong email and password")
     public void testLoginWithWrongCredentials() {
-        HomePage homePage = new HomePage();
         NavigationMenu menu = new NavigationMenu();
-        homePage.closeSubscriptionDialog();
         LoginPage loginPage = menu.openLoginPage();
         loginPage.inputUserCredentials(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(8));
         loginPage.clickSubmitButton();
@@ -28,9 +26,7 @@ public class LoginPageTest extends BaseTest {
     @MethodSource("provideEmptyField")
     @DisplayName("Login with empty email or password")
     public void testLoginWithEmptyObligatoryField(String email, String password) {
-        HomePage homePage = new HomePage();
         NavigationMenu menu = new NavigationMenu();
-        homePage.closeSubscriptionDialog();
         LoginPage loginPage = menu.openLoginPage();
         loginPage.inputUserCredentials(email, password);
         Assertions.assertFalse(loginPage.isConfirmButtonEnabled());

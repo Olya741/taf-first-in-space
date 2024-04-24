@@ -10,8 +10,6 @@ public class CartTest extends BaseTest {
 
     @Test
     public void testAddProductToCart() {
-        HomePage homePage = new HomePage();
-        homePage.closeSubscriptionDialog();
         NavigationMenu menu = new NavigationMenu();
         menu.openSection(Menu.SALE);
         ResultsPage resultsPage = new ResultsPage();
