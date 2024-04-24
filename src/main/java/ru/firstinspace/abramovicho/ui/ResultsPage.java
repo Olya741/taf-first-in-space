@@ -80,9 +80,10 @@ public class ResultsPage {
         driver.findElement(By.xpath(getExactPath(addToCartButton))).click();
     }
 
-    public void addProductToCart() {
+    public CartModal addProductToCart() {
         pointCursorOnElement();
         findFirstAvailableSize().click();
         clickAddToCartButton();
+        return new CartModal();
     }
 }

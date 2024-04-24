@@ -15,8 +15,7 @@ public class CartTest extends BaseTest {
         ResultsPage resultsPage = new ResultsPage();
         String modelName = resultsPage.getModelName();
         String modelSize = resultsPage.getAvailableSize();
-        resultsPage.addProductToCart();
-        CartModal cartModal = new CartModal();
+        CartModal cartModal = resultsPage.addProductToCart();
 
         assertAll(
                 () -> assertEquals(modelName, cartModal.getProductName()),
