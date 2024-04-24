@@ -1,4 +1,4 @@
-package ru.firstinspace.abramovicho;
+package ru.firstinspace.abramovicho.utils;
 
 import com.github.javafaker.Faker;
 

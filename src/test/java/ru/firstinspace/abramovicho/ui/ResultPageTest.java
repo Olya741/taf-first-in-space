@@ -4,7 +4,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.firstinspace.abramovicho.Util;
+import ru.firstinspace.abramovicho.utils.Util;
 
 public class ResultPageTest extends BaseTest {
     String wrongText = RandomStringUtils.randomAlphabetic(10);

@@ -3,7 +3,7 @@ package ru.firstinspace.abramovicho.api;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import ru.firstinspace.abramovicho.Util;
+import ru.firstinspace.abramovicho.utils.Util;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
