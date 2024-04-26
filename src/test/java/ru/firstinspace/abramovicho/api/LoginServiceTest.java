@@ -3,6 +3,7 @@ package ru.firstinspace.abramovicho.api;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import ru.firstinspace.abramovicho.api.models.User;
 import ru.firstinspace.abramovicho.utils.Util;
 
 import static io.restassured.RestAssured.given;
@@ -15,9 +16,13 @@ public class LoginServiceTest {
     @Test
     @DisplayName("POST 400: Test login with invalid credentials")
     public void testLogin1() {
+        User userBody = new User();
+        userBody.setEmail(Util.getRandomEmail());
+        userBody.setPassword(RandomStringUtils.randomAlphanumeric(10));
+
         given()
                 .spec(BaseSpecification.requestSpec)
-                .body(setBodyForLogin(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(10)))
+                .body(userBody)
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
@@ -27,9 +32,13 @@ public class LoginServiceTest {
     @Test
     @DisplayName("POST 400: Test login with empty")
     public void testLogin2() {
+        User userBody = new User();
+        userBody.setEmail("");
+        userBody.setPassword(RandomStringUtils.randomAlphanumeric(10));
+
         given()
                 .spec(BaseSpecification.requestSpec)
-                .body(setBodyForLogin("", RandomStringUtils.randomAlphanumeric(10)))
+                .body(userBody)
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
@@ -39,9 +48,13 @@ public class LoginServiceTest {
     @Test
     @DisplayName("POST 400: Test login with empty password")
     public void testLogin3() {
+        User userBody = new User();
+        userBody.setEmail(Util.getRandomEmail());
+        userBody.setPassword("");
+
         given()
                 .spec(BaseSpecification.requestSpec)
-                .body(setBodyForLogin(Util.getRandomEmail(), ""))
+                .body(userBody)
                 .post(EndPoints.LOGIN)
                 .then()
                 .statusCode(400)
@@ -51,9 +64,13 @@ public class LoginServiceTest {
     @Test
     @DisplayName("POST 405: Test login with wrong method")
     public void testLogin4() {
+        User userBody = new User();
+        userBody.setEmail(Util.getRandomEmail());
+        userBody.setPassword(RandomStringUtils.randomAlphanumeric(10));
+
         given()
                 .spec(BaseSpecification.requestSpec)
-                .body(setBodyForLogin(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(10)))
+                .body(userBody)
                 .put(EndPoints.LOGIN)
                 .then()
                 .statusCode(405)
@@ -76,8 +93,12 @@ public class LoginServiceTest {
     @Test
     @DisplayName("POST 415: Test login without 'Content-type' header")
     public void testLogin6() {
+        User userBody = new User();
+        userBody.setEmail(Util.getRandomEmail());
+        userBody.setPassword(RandomStringUtils.randomAlphanumeric(10));
+
         given()
-                .body(setBodyForLogin(Util.getRandomEmail(), RandomStringUtils.randomAlphanumeric(10)))
+                .body(userBody)
                 .log().all()
                 .post(BASE_URI + EndPoints.LOGIN)
                 .then()

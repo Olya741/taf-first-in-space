@@ -7,13 +7,6 @@ public class LoginService {
     public static String invalidEmailFormatError = "Введите правильный адрес электронной почты.";
     public static String invalidPasswordFormatError = "Not a valid string.";
 
-    public static String setBodyForLogin(String email, String password) {
-        return String.format("{\n" +
-                "\"email\":\"%s\",\n" +
-                "\"password\":\"%s\"\n" +
-                "}", email, password);
-    }
-
     public static String setBodyForLogin(String email, boolean password) {
         return String.format("{\n" +
                 "\"email\":\"%s\",\n" +
