@@ -1,4 +1,4 @@
-package ru.firstinspace.abramovicho.ui;
+package ru.firstinspace.abramovicho.utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotInteractableException;

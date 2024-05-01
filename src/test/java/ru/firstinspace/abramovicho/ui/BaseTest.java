@@ -2,6 +2,7 @@ package ru.firstinspace.abramovicho.ui;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
+import ru.firstinspace.abramovicho.driver.Driver;
 
 public class BaseTest {
 

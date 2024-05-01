@@ -1,4 +1,4 @@
-package ru.firstinspace.abramovicho.ui;
+package ru.firstinspace.abramovicho.driver;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;

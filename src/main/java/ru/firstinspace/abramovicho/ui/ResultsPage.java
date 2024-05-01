@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import ru.firstinspace.abramovicho.driver.Driver;
+import ru.firstinspace.abramovicho.utils.UIWait;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -15,35 +17,35 @@ public class ResultsPage {
         this.driver = Driver.getDriver();
     }
 
-    private By listOfItems = By.xpath("//div[@class='catalog__card']");
-    private String catalogItem = "//div[@class='catalog__card']";
-    private By emptySearchResultMessage = By.xpath("//p[@class='catalog__info']");
-    private String sizeItem = "//ul[@class='card-sizes__list']/li";
-    private String modelName = "//div[@class='card__name']";
-    private String addToCartButton = "//div[@class='card-sizes card__sizes']/button";
-    private int itemNumberInDOM = 2;
+    private final By LIST_OF_ITEMS = By.xpath("//div[@class='catalog__card']");
+    private final String CATALOG_ITEM = "//div[@class='catalog__card']";
+    private final By EMPTY_SEARCH_RESULT_MESSAGE = By.xpath("//p[@class='catalog__info']");
+    private final String SIZE_ITEM = "//ul[@class='card-sizes__list']/li";
+    private final String MODEL_NAME = "//div[@class='card__name']";
+    private final String ADD_TO_CART_BUTTON = "//div[@class='card-sizes card__sizes']/button";
+    private final int ITEM_NUMBER_IN_DOM = 2;
 
     public String getEmptySearchResultMessage() {
-        UIWait.waitElementIsVisible(driver, emptySearchResultMessage);
-        return driver.findElement(emptySearchResultMessage).getText();
+        UIWait.waitElementIsVisible(driver, EMPTY_SEARCH_RESULT_MESSAGE);
+        return driver.findElement(EMPTY_SEARCH_RESULT_MESSAGE).getText();
     }
 
     private List<WebElement> getListOfModels() {
-        UIWait.waitListIsNotEmpty(driver, listOfItems);
-        return driver.findElements(By.xpath(catalogItem));
+        UIWait.waitListIsNotEmpty(driver, LIST_OF_ITEMS);
+        return driver.findElements(By.xpath(CATALOG_ITEM));
     }
 
     private WebElement getFirstModel() {
-        UIWait.waitListIsNotEmpty(driver, listOfItems);
-        return driver.findElement(By.xpath(catalogItem));
+        UIWait.waitListIsNotEmpty(driver, LIST_OF_ITEMS);
+        return driver.findElement(By.xpath(CATALOG_ITEM));
     }
 
     private WebElement getSingleModel() {
-        return getListOfModels().get(itemNumberInDOM - 1);
+        return getListOfModels().get(ITEM_NUMBER_IN_DOM - 1);
     }
 
     private String getExactPath(String basePath) {
-        return catalogItem + "[" + itemNumberInDOM + "]" + basePath;
+        return CATALOG_ITEM + "[" + ITEM_NUMBER_IN_DOM + "]" + basePath;
     }
 
     public ModelInfoPage openModelDescription() {
@@ -52,11 +54,11 @@ public class ResultsPage {
     }
 
     public String getModelName() {
-        return getSingleModel().findElement(By.xpath(getExactPath(modelName))).getText();
+        return getSingleModel().findElement(By.xpath(getExactPath(MODEL_NAME))).getText();
     }
 
     private List<WebElement> getListOfSuggestedSizes() {
-        return driver.findElements(By.xpath(getExactPath(sizeItem)));
+        return driver.findElements(By.xpath(getExactPath(SIZE_ITEM)));
     }
 
     private WebElement findFirstAvailableSize() {
@@ -77,7 +79,7 @@ public class ResultsPage {
     }
 
     private void clickAddToCartButton() {
-        driver.findElement(By.xpath(getExactPath(addToCartButton))).click();
+        driver.findElement(By.xpath(getExactPath(ADD_TO_CART_BUTTON))).click();
     }
 
     public CartModal addProductToCart() {
